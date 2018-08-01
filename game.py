@@ -41,13 +41,13 @@ class Board:
     # Checks if the board is filled
     def fullBoard(self):
         for i in range(1,10):
-            if checkOpenPos(i):
+            if self.checkOpenPos(i):
                 return False
         return True
 
     # Checks if there is a final tie or if the game is to keep going
     def tie(self, sym1, sym2):
-        return fullBoard() and not isWon(sym1) and not isWon(sym2)
+        return self.fullBoard() and not self.isWon(sym1) and not self.isWon(sym2)
 
 
 class Player:
@@ -60,15 +60,23 @@ class Player:
     def makeMove(self, i, b):
         b.positions[i] = self.symbol
 
+    def getPlayerMove(self, board):
+        # Let the player type in his move.
+        move = ' '
+        while move not in '1 2 3 4 5 6 7 8 9'.split() or not board.checkOpenPos(int(move)):
+            print('What is your next move, ' + self.name + '? (1-9)')
+            move = input()
+        return int(move)
 
 
 # Testing
-p1 = Player("First", 'x')
-p2 = Player("Second", 'o')
-board = Board()
-
-p1.makeMove(1, board)
-print(board.printBoard())
-print()
-p2.makeMove(5, board)
-print(board.printBoard())
+# p1 = Player("First", 'x')
+# p2 = Player("Second", 'o')
+# board = Board()
+# move = p1.getPlayerMove(board)
+# p1.makeMove(move, board)
+# print(board.printBoard())
+# print()
+# move = p2.getPlayerMove(board)
+# p2.makeMove(move, board)
+# print(board.printBoard())
