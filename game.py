@@ -1,5 +1,7 @@
+#class Board
 class Board:
 
+    # to initialize the object
     def __init__(self):
         self.positions = [' '] * 10
 
@@ -20,6 +22,7 @@ class Board:
 
 
     def checkOpenPos(self, i):
+        #If there is open spot
         return self.positions[i] == ' '
 
     # Check if any 3 in a row have that specific symbol
@@ -28,7 +31,7 @@ class Board:
     # Left 3, Middle 3, Right 3
     # Left Diagonal, Right Diagonal
     def isWon(self, sym):
-
+        # check if the given symbol is won
         return ((self.positions[7] == sym and self.positions[8] == sym and self.positions[9] == sym) or
         (self.positions[4] == sym and self.positions[5] == sym and self.positions[6] == sym) or
         (self.positions[1] == sym and self.positions[2] == sym and self.positions[3] == sym) or
@@ -49,7 +52,7 @@ class Board:
     def tie(self, sym1, sym2):
         return self.fullBoard() and not self.isWon(sym1) and not self.isWon(sym2)
 
-
+# class Player
 class Player:
 
     def __init__(self, name, symbol):
